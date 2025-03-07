@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStuff Home - Turn Your Home Into a Digital Museum</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background-color: #FF6B6B;
+            color: white;
+            border: 2px solid #FF6B6B;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #FF6B6B;
+            border: 2px solid #FF6B6B;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 107, 107, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF6B6B;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #FF6B6B;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #FF6B6B;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23D8A76B'/%3E%3Cpath d='M0 400 Q 300 300 600 400 T 1200 400 V 800 H 0 Z' fill='%23A67B48'/%3E%3Ccircle cx='900' cy='200' r='80' fill='%23FFDA44' opacity='0.8'/%3E%3Crect x='200' y='500' width='200' height='120' fill='%23753C24'/%3E%3Crect x='240' y='530' width='120' height='60' fill='%23B25D3A'/%3E%3Cpath d='M500 600 Q 550 550 600 600 T 700 600 V 700 H 500 Z' fill='%23D62828'/%3E%3Cpath d='M800 550 A 30 30 0 1 1 900 550 V 650 H 800 Z' fill='%238B4513'/%3E%3Cpath d='M0 0 L 1200 0 L 1200 400 Q 900 350 600 400 T 0 400 Z' fill='%2387CEEB' opacity='0.3'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,50 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 Z' fill='rgba(255, 255, 255, 0.1)'/%3E%3C/svg%3E");
+            background-size: 300px;
+            opacity: 0.2;
+            animation: float 40s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 300px 300px;
+            }
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s 0.2s forwards;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s 0.4s forwards;
+        }
+        
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s 0.6s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .demo-video {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            max-width: 400px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: slideIn 1s 0.8s forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(-50%);
+            }
+        }
+        
+        /* Features Section Styles */
+        .features {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,50 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 Z' fill='rgba(255, 107, 107, 0.05)'/%3E%3C/svg%3E");
+            background-size: 200px;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-image {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .feature-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            color: #FF6B6B;
+        }
+        
+        .feature-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .feature-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            width: 30%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #FF6B6B;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            color: #666;
+        }
+        
+        /* Privacy Section Styles */
+        .privacy {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .privacy::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,50 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 Z' fill='rgba(255, 107, 107, 0.05)'/%3E%3C/svg%3E");
+            background-size: 200px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .privacy-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .privacy-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .privacy-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .privacy-feature {
+            width: 48%;
+            margin-bottom: 30px;
+        }
+        
+        /* Privacy Section Tabs */
+        .privacy-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .privacy-tab-button {
+            padding: 12px 20px;
+            margin: 0 10px 10px;
+            background-color: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .privacy-tab-button:hover {
+            background-color: #f9f9f9;
+            border-color: #FF6B6B;
+            transform: translateY(-3px);
+        }
+        
+        .privacy-tab-button.active {
+            background-color: #FF6B6B;
+            color: white;
+            border-color: #FF6B6B;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .privacy-tab-content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 20px;
+        }
+        
+        .privacy-tab-pane {
+            display: none;
+            animation: fadeEffect 0.5s;
+        }
+        
+        .privacy-tab-pane.active {
+            display: block;
+        }
+        
+        .privacy-feature-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .privacy-feature-image {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .privacy-feature-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .privacy-icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        
+        .privacy-feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .privacy-feature-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Museum Section Styles */
+        .museum {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .museum-content {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .museum-text {
+            flex: 1;
+            padding-right: 40px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
+        }
+        
+        .museum-text.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .museum-image {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s ease;
+        }
+        
+        .museum-image.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .museum-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .museum-features {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .museum-feature {
+            width: 30%;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .museum-feature.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .museum-feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .museum-feature-icon {
+            font-size: 2rem;
+            color: #FF6B6B;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .museum-feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .museum-feature-description {
+            color: #666;
+        }
+        
+        /* CTA Section Styles */
+        .cta {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,50 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 Z' fill='rgba(255, 107, 107, 0.05)'/%3E%3C/svg%3E");
+            background-size: 150px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+        }
+        
+        .cta-content.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            margin-bottom: 40px;
+            color: #666;
+        }
+        
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .app-badge {
+            margin: 0 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .app-badge:hover {
+            transform: translateY(-5px);
+        }
+        
+        .app-badge img {
+            height: 50px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            padding: 60px 0 30px;
+            background-color: #333;
+            color: white;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            width: 23%;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #FF6B6B;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #FF6B6B;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #FF6B6B;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #888;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .demo-video {
+                position: relative;
+                top: 0;
+                right: 0;
+                transform: none;
+                margin-top: 30px;
+                max-width: 100%;
+            }
+            
+            .feature-card, .museum-content {
+                flex-direction: column;
+            }
+            
+            .feature-image, .museum-image {
+                margin-bottom: 30px;
+            }
+            
+            .privacy-feature {
+                width: 100%;
+            }
+            
+            .museum-features {
+                flex-direction: column;
+            }
+            
+            .museum-feature {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .footer-column {
+                width: 48%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .footer-column {
+                width: 100%;
+            }
+        }
+        
+        /* Tab Styles for Features */
+        .feature-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+        
+        .tab-button:hover {
+            color: #FF6B6B;
+        }
+        
+        .tab-button.active {
+            color: #FF6B6B;
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #FF6B6B;
+        }
+        
+        .tab-content {
+            min-height: 200px;
+        }
+        
+        .tab-pane {
+            display: none;
+            animation: fadeEffect 0.5s;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        /* Museum Feature Styles */
+        .museum-feature-tabs {
+            margin-top: 40px;
+        }
+        
+        .museum-feature-content {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        
+        .museum-feature-content .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            color: #FF6B6B;
+        }
+        
+        .museum-feature-content .feature-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .museum-feature-content .feature-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .museum-feature-image {
+            margin-top: 30px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .museum-feature-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .museum-feature-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        
+        /* Animation for nostalgic icons */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .nostalgic-icon {
+            display: inline-block;
+            font-size: 1.2em;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        /* Fade-in animation for text */
+        .fade-in-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">MyStuff Home</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Insurance</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#museum">Display</a></li>
+                    <li><a href="#cta">Download</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Turn your home into a digital museum.</h1>
+                <p class="hero-description">MyStuff automatically documents your valuables using your pictures and videos, and allows you to customize, display, and explore your home in a unique and interactive way.</p>
+                <div class="hero-cta">
+                    <a href="#cta" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="demo-video">
+                <img src="/api/placeholder/400/300" alt="MyStuff Demo" width="100%">
+                <!-- The background image is defined in CSS for the hero section with the 70s kitchen atmosphere -->
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="/api/placeholder/500/400" alt="Insurance Claims">
+                </div>
+                <div class="feature-content">
+                    <span class="feature-icon">🍝</span>
+                    <h3 class="feature-title">Simplify insurance claims with AI-powered tools</h3>
+                    <p class="feature-description fade-in-text">Don't tell your insurance providers, but their insurance claims are currently outdated. <strong>AND</strong>, they can be tedious and emotional. MyStuff automates your insurance process by storing the home inside a digital archive, providing you with easy access to your home from anywhere.</p>
+                    
+                    <!-- Feature tabs navigation -->
+                    <div class="feature-tabs">
+                        <button class="tab-button active" data-tab="tab1">Automate Claims</button>
+                        <button class="tab-button" data-tab="tab2">Document Belongings</button>
+                        <button class="tab-button" data-tab="tab3">Match Resources</button>
+                    </div>
+                    
+                    <!-- Feature tab content -->
+                    <div class="tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <h4>Automates your claims with AI integration</h4>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Stores your specific information needed to file insurance claims</li>
+                                <li class="fade-in-text">Pre-existing templates for different insurance claims</li>
+                                <li class="fade-in-text">Exportable CSV files for seamless documentation</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="tab2" class="tab-pane">
+                            <h4>Documents your belongings with a click</h4>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">MyStuff documents your belongings, valuables, and furniture with just a snap using Computer Vision Segmentation</li>
+                                <li class="fade-in-text">Categorize, identify, and value items automatically</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="tab3" class="tab-pane">
+                            <h4>Matches you with optimal resources</h4>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Integrates AI to help you with online/in-person insurance adjusters for precise value assessments</li>
+                                <li class="fade-in-text">Allows for adjuster ratings and crowdsourced opinions</li>
+                                <li class="fade-in-text">Suggests messages and message templates for communication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+        <div class="container">
+            <h2 class="section-title">Your Privacy is Our Highest Priority</h2>
+            
+            <div class="privacy-card">
+                <h3 class="feature-title">Your data, your control</h3>
+                <p class="fade-in-text">We take your privacy seriously and put you in complete control of your information.</p>
+                
+                <!-- Privacy tabs navigation -->
+                <div class="privacy-tabs">
+                    <button class="privacy-tab-button active" data-tab="privacy-tab1">
+                        <span class="privacy-icon">🔒</span> Privacy First
+                    </button>
+                    <button class="privacy-tab-button" data-tab="privacy-tab2">
+                        <span class="privacy-icon">☁️</span> Cloud Security
+                    </button>
+                    <button class="privacy-tab-button" data-tab="privacy-tab3">
+                        <span class="privacy-icon">🔐</span> Complete Control
+                    </button>
+                </div>
+                
+                <!-- Privacy tab content -->
+                <div class="privacy-tab-content">
+                    <div id="privacy-tab1" class="privacy-tab-pane active">
+                        <div class="privacy-feature-content">
+                            <h4 class="privacy-feature-title">We take privacy seriously</h4>
+                            <p class="privacy-feature-description fade-in-text">Your security is our top priority with advanced authentication methods.</p>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Two-factor authentication (2FA) for all accounts</li>
+                                <li class="fade-in-text">Identity confirmation through ID verification</li>
+                                <li class="fade-in-text">Biometric authentication with face scan technology</li>
+                            </ul>
+                            <div class="privacy-feature-image">
+                                <img src="/api/placeholder/400/250" alt="Privacy First">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="privacy-tab2" class="privacy-tab-pane">
+                        <div class="privacy-feature-content">
+                            <h4 class="privacy-feature-title">Your home on the clouds</h4>
+                            <p class="privacy-feature-description fade-in-text">We've built a secure digital environment for your valuable information.</p>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Cloud-based security with end-to-end encryption</li>
+                                <li class="fade-in-text">Private server with permanent data storage</li>
+                                <li class="fade-in-text">Dedicated space that's always accessible</li>
+                            </ul>
+                            <div class="privacy-feature-image">
+                                <img src="/api/placeholder/400/250" alt="Cloud Security">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="privacy-tab3" class="privacy-tab-pane">
+                        <div class="privacy-feature-content">
+                            <h4 class="privacy-feature-title">You have complete control</h4>
+                            <p class="privacy-feature-description fade-in-text">Your data is only shared when and with whom you choose.</p>
+                            <ul class="feature-list">
+                                <li class="fade-in-text">User-controlled data sharing with selected organizations</li>
+                                <li class="fade-in-text">Information shared only when you explicitly allow</li>
+                                <li class="fade-in-text">Complete control over what information you display</li>
+                                <li class="fade-in-text">Others only have the power to make suggestions</li>
+                            </ul>
+                            <div class="privacy-feature-image">
+                                <img src="/api/placeholder/400/250" alt="Complete Control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="museum" id="museum">
+        <div class="container">
+            <h2 class="section-title">Engrave Your Home in the Clouds</h2>
+            
+            <div class="museum-content">
+                <div class="museum-text">
+                    <span class="feature-icon">📀</span>
+                    <p class="fade-in-text">MyStuff isn't just a home inventory or insurance claim app—it's a vault for your childhood memories. The warmth of your mom's spaghetti simmering in the kitchen, the crackle of vinyl spinning on the record player as you sink into the couch... These moments fade with time, but with MyStuff, they're etched into the clouds, forever.</p>
+                </div>
+                
+                <div class="museum-image">
+                    <img src="/api/placeholder/500/400" alt="Digital Museum">
+                </div>
+            </div>
+            
+            <div class="museum-feature-container">
+                <!-- Feature tabs navigation similar to Key Features section -->
+                <div class="feature-tabs museum-feature-tabs">
+                    <button class="tab-button active" data-tab="museum1">Display Your Home</button>
+                    <button class="tab-button" data-tab="museum2">Be Your Own Designer</button>
+                    <button class="tab-button" data-tab="museum3">Bring Your Community Together</button>
+                </div>
+                
+                <!-- Feature tab content -->
+                <div class="tab-content museum-tab-content">
+                    <div id="museum1" class="tab-pane active">
+                        <div class="museum-feature-content">
+                            <span class="feature-icon">🏠</span>
+                            <h4 class="feature-title">Display Your Home</h4>
+                            <p class="feature-description fade-in-text">Create a detailed digital recreation of your physical home space.</p>
+                            
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Verified by video and CV</li>
+                                <li class="fade-in-text">You will be given a set of your own virtual items and space</li>
+                                <li class="fade-in-text">These items will link to their original counterparts</li>
+                                <li class="fade-in-text">Able to view and interact with your virtual home from any device</li>
+                            </ul>
+                            
+                            <div class="museum-feature-image">
+                                <img src="/api/placeholder/500/300" alt="Display Your Home">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="museum2" class="tab-pane">
+                        <div class="museum-feature-content">
+                            <span class="feature-icon">🎨</span>
+                            <h4 class="feature-title">Be Your Own Designer</h4>
+                            <p class="feature-description fade-in-text">Design your own 2D/3D space by adding virtual items and decorations.</p>
+                            
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Design your own 2D/3D space by adding virtual items and decorations</li>
+                                <li class="fade-in-text">Customize layouts and arrangements</li>
+                                <li class="fade-in-text">Experiment with different styles and themes</li>
+                                <li class="fade-in-text">Create unique spaces that reflect your personal style</li>
+                            </ul>
+                            
+                            <div class="museum-feature-image">
+                                <img src="/api/placeholder/500/300" alt="Be Your Own Designer">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="museum3" class="tab-pane">
+                        <div class="museum-feature-content">
+                            <span class="feature-icon">👨‍👩‍👧‍👦</span>
+                            <h4 class="feature-title">Bring Your Community Together</h4>
+                            <p class="feature-description fade-in-text">Share your virtual home with friends and family.</p>
+                            
+                            <ul class="feature-list">
+                                <li class="fade-in-text">Making groups with your friends, allowing friends to visit one another</li>
+                                <li class="fade-in-text">Allowing them to show love by giving them emojis and gifts</li>
+                                <li class="fade-in-text">Host virtual gatherings in your customized space</li>
+                                <li class="fade-in-text">Share special moments in a unique digital environment</li>
+                            </ul>
+                            
+                            <div class="museum-feature-image">
+                                <img src="/api/placeholder/500/300" alt="Community Together">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Start building your virtual home with MyStuff today</h2>
+                <p class="cta-description fade-in-text">Take control of your home inventory, simplify insurance claims, and preserve your precious memories in a digital museum.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Download Now</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="app-badges">
+                    <a href="#" class="app-badge">
+                        <img src="/api/placeholder/120/40" alt="App Store">
+                    </a>
+                    <a href="#" class="app-badge">
+                        <img src="/api/placeholder/120/40" alt="Google Play">
+                    </a>
+                    <a href="#" class="app-badge">
+                        <img src="/api/placeholder/120/40" alt="Desktop">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MyStuff Home</h3>
+                    <p>Turn your home into a digital museum and simplify your insurance claims.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 MyStuff Home. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in-text');
+        const featureCards = document.querySelectorAll('.feature-card');
+        const privacyCard = document.querySelector('.privacy-card');
+        const museumText = document.querySelector('.museum-text');
+        const museumImage = document.querySelector('.museum-image');
+        const ctaContent = document.querySelector('.cta-content');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 50) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            featureCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('visible');
+                }
+            });
+            
+            if (privacyCard) {
+                const privacyTop = privacyCard.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (privacyTop < windowHeight - 100) {
+                    privacyCard.classList.add('visible');
+                }
+            }
+            
+            if (museumText && museumImage) {
+                const museumTop = museumText.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (museumTop < windowHeight - 100) {
+                    museumText.classList.add('visible');
+                    museumImage.classList.add('visible');
+                }
+            }
+            
+            if (ctaContent) {
+                const ctaTop = ctaContent.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (ctaTop < windowHeight - 100) {
+                    ctaContent.classList.add('visible');
+                }
+            }
+        }
+        
+        // Tab functionality for features
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+        
+        // Tab functionality for museum features
+        document.querySelectorAll('.museum-tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.museum-tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.museum-tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+        
+        // Initial check on page load
+        window.addEventListener('load', checkFade);
+        
+        // Tab functionality for privacy features
+        document.querySelectorAll('.privacy-tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.privacy-tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.privacy-tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkFade);
+    </script>
+</body>
+</html>
