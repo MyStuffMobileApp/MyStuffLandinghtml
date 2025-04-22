@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStuff - Smart Home Inventory Management</title>
+    <link rel="stylesheet" href="../../public/css/pages/home.css">
+    <link rel="stylesheet" href="../../public/css/components/nav.css">
+    <link rel="stylesheet" href="../../public/css/components/footer.css">
+    <link rel="stylesheet" href="../../public/css/components/timeline.css">
+    <link rel="stylesheet" href="../../public/css/components/calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&family=Palanquin+Dark:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation and Footer placeholders -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="particle-container"></div>
+            <div class="hero-bg-left">
+                <img src="../../public/assets/images/burnt-home.jpg" alt="Burnt home aftermath" class="hero-image">
+            </div>
+            <div class="hero-bg-right">
+                <img src="../../public/assets/images/memory.jpg" alt="Happy family memories" class="hero-image">
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text-container">
+                <div class="hero-text-left">
+                    <h1>DISASTERS<br>ERASE</h1>
+                </div>
+                <div class="hero-text-right">
+                    <h1>MYSTUFF<br>REMEMBERS</h1>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <button class="cta-button">
+                    Start Documenting <span class="arrow">→</span>
+                    <div class="sparkle-container"></div>
+                </button>
+                <p class="stats-counter">Protecting <span class="counter" data-target="1203">1,203</span> LA homes this month</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="problem-statement">
+        <div class="stats-container">
+            <div class="stats-logo">
+                <img src="../../public/assets/images/logo1.png" alt="MyStuff Logo">
+            </div>
+            <div class="stat">
+                <h3>6 out of 10</h3>
+                <p>households lack proper documentation</p>
+            </div>
+            <div class="stat">
+                <h3>$600,000</h3>
+                <p>average financial loss without MyStuff</p>
+            </div>
+        </div>
+        <div class="photo-collage">
+            <img src="../../public/assets/images/Stats.png" alt="Insurance claims statistics" class="stats-image">
+        </div>
+    </section>
+
+    <!-- Calculator Tool -->
+    <section class="calculator-tool">
+        <div class="calculator-container">
+            <h2>Risk & Loss Calculator</h2>
+            <div class="calculator-slideshow">
+                <!-- Slide 1: Input Form -->
+                <div class="calculator-slide" data-slide="form">
+                    <div class="calculator-form" id="calculator-form">
+                        <div class="input-group">
+                            <label for="home-size">Home Size (sq ft)</label>
+                            <input type="number" id="home-size" placeholder="e.g., 2000" min="0">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="high-value">High-Value Items ($)</label>
+                            <input type="number" id="high-value" placeholder="e.g., 50000" min="0">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="zip-code">ZIP Code</label>
+                            <input type="text" id="zip-code" placeholder="e.g., 90210" maxlength="5" pattern="[0-9]*">
+                        </div>
+                        
+                        <button class="calculate-btn">Calculate Risk →</button>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Results -->
+                <div class="calculator-slide" data-slide="results">
+                    <div class="results-content">
+                        <!-- Cards Container -->
+                        <div class="results-cards-flow">
+                            <!-- Property Value Card -->
+                            <div class="summary-card value-card">
+                                <div class="card-header">
+                                    <h4>Property Value Summary</h4>
+                                    <span class="location-tag">Los Angeles County, CA</span>
+                                </div>
+                                <div class="card-content">
+                                    <div class="value-info">
+                                        <div class="value-item total">
+                                            <span class="label">Total Value</span>
+                                            <span class="amount">$<span id="total-loss">450,000</span></span>
+                                        </div>
+                                        <div class="value-breakdown">
+                                            <div class="value-item covered">
+                                                <span class="label">Insurance Coverage (70%)</span>
+                                                <span class="amount">$<span id="insurance-coverage">315,000</span></span>
+                                            </div>
+                                            <div class="value-item gap">
+                                                <span class="label">Coverage Gap (30%)</span>
+                                                <span class="amount">$<span id="mystuff-loss">135,000</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-container">
+                                        <canvas id="value-distribution"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Risk Assessment Card -->
+                            <div class="summary-card risk-card">
+                                <div class="card-header">
+                                    <h4>Risk Assessment</h4>
+                                    <div class="risk-badge high">High Risk Area</div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="risk-factors">
+                                        <div class="risk-factor">
+                                            <div class="factor-header">
+                                                <div class="risk-name">
+                                                    <i class="fas fa-fire"></i>
+                                                    <span>Wildfire Risk</span>
+                                                </div>
+                                                <span class="factor-value high">High</span>
+                                            </div>
+                                            <div class="factor-meter">
+                                                <div class="meter-fill high"></div>
+                                            </div>
+                                        </div>
+                                        <div class="risk-factor">
+                                            <div class="factor-header">
+                                                <div class="risk-name">
+                                                    <i class="fas fa-water"></i>
+                                                    <span>Flood Risk</span>
+                                                </div>
+                                                <span class="factor-value low">Low</span>
+                                            </div>
+                                            <div class="factor-meter">
+                                                <div class="meter-fill low"></div>
+                                            </div>
+                                        </div>
+                                        <div class="risk-factor">
+                                            <div class="factor-header">
+                                                <div class="risk-name">
+                                                    <i class="fas fa-house-crack"></i>
+                                                    <span>Earthquake Risk</span>
+                                                </div>
+                                                <span class="factor-value medium">Medium</span>
+                                            </div>
+                                            <div class="factor-meter">
+                                                <div class="meter-fill medium"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Card -->
+                            <div class="summary-card action-card">
+                                <div class="action-content">
+                                    <div class="action-message">
+                                        <h4>Recommended Action</h4>
+                                        <p>Your property is in a high-risk area. Document your belongings now to ensure maximum protection.</p>
+                                    </div>
+                                    <div class="action-buttons">
+                                        <button class="cta-button">
+                                            Start Free Documentation
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <button class="back-btn">← Back to Calculator</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution & Video Demo -->
+    <section class="solution">
+        <h2>Let MyStuff Document Your Stuff.</h2>
+        <div class="video-container">
+            <div class="video-placeholder">
+                <button class="play-button">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+            <p class="video-caption">See how MyStuff turns your photos into bulletproof evidence in 30 seconds.</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>MyStuff works like magic. </h2>
+        <div class="steps-container">
+            <div class="step" data-step="1">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>Capture</h3>
+                    <button class="expand-btn" aria-label="Show details">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="step-image">
+                    <img src="../../public/assets/images/capture-demo.jpg" alt="Taking photos of room" class="preview-image">
+                </div>
+                <div class="step-content">
+                    <p>Start with what you already have – those everyday photos and videos in your phone. The same ones you share with loved ones, showing your home and life.</p>
+                    <ul>
+                        <li>Use existing photos</li>
+                        <li>Take new quick snaps</li>
+                        <li>No special setup needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step" data-step="2">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>Select</h3>
+                    <button class="expand-btn" aria-label="Show details">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="step-image">
+                    <img src="../../public/assets/images/select-demo.jpg" alt="Choosing photos for AI analysis" class="preview-image">
+                </div>
+                <div class="step-content">
+                    <p>Choose which photos you want our AI to analyze. Those casual family pictures and home snapshots are perfect – they already show your valuable items.</p>
+                    <ul>
+                        <li>Pick your photos</li>
+                        <li>Include room views</li>
+                        <li>Family photos work great</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step" data-step="3">
+                <div class="step-header">
+                    <div class="step-icon">
+                        <i class="fas fa-shield-heart"></i>
+                    </div>
+                    <h3>MyStuff</h3>
+                    <button class="expand-btn" aria-label="Show details">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="step-image">
+                    <img src="../../public/assets/images/mystuff-demo.jpg" alt="AI-powered inventory" class="preview-image">
+                </div>
+                <div class="step-content">
+                    <p>Our AI identifies and catalogs your belongings from your selected photos. The same memories you cherish become your safety net – no extra work needed.</p>
+                    <ul>
+                        <li>Smart item detection</li>
+                        <li>Automatic categorization</li>
+                        <li>Insurance-ready reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-container">
+        <h2 class="timeline-title">More Than Disaster Prep—A New Standard for Homeowners.</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon wildfire">
+                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="timeline-year">2025</div>
+                <div class="timeline-text">Local wildfire focus</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon expansion">
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="timeline-year">2026</div>
+                <div class="timeline-text">US expansion</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon global">
+                    <i class="fas fa-globe"></i>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="timeline-year">2027</div>
+                <div class="timeline-text">Global partnerships</div>
+            </div>
+        </div>
+        <p class="timeline-subtitle">Join us in redefining disaster preparedness worldwide.</p>
+    </section>
+
+    <!-- Final CTA + Vision Teaser -->
+    <section class="final-cta">
+        <div class="floating-icons">
+            <i class="fas fa-couch"></i>
+            <i class="fas fa-book-open"></i>
+            <i class="fas fa-chair"></i>
+            <i class="fas fa-lamp"></i>
+            <i class="fas fa-tv"></i>
+            <i class="fas fa-bed"></i>
+        </div>
+        <div class="cta-content">
+            <h2>Rebuild Faster. Recover Stronger.</h2>
+            <h3>Join 10,000+ LA homeowners protecting their stories.</h3>
+            <button class="cta-button">Start Free</button>
+            <p class="vision-teaser">Proudly expanding nationwide in 2026.</p>
+        </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script type="module" src="../../public/js/calculator.js"></script>
+    <script src="../../public/js/animations.js"></script>
+    <script src="../../public/js/script.js"></script>
+    <script src="../../public/js/templates.js"></script>
+</body>
+</html> 

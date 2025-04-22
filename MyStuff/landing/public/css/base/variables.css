@@ -1,0 +1,30 @@
+/* Variables */
+:root {
+    /* Colors */
+    --primary: #f16ceb;
+    --secondary: #6dc1e8;
+    --white: #ffffff;
+    --orange: #e45f2b;
+    --dark: #303030;
+    --yellow: #f6c445;
+    
+    /* Typography */
+    --font-body: 'Lexend Deca', sans-serif;
+    --font-heading: 'Palanquin Dark', sans-serif;
+
+    /* Layout */
+    --nav-height: 72px;
+    --nav-max-width: min(1400px, 90vw);
+    --nav-padding: clamp(1rem, 2vw, 2rem);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+} 

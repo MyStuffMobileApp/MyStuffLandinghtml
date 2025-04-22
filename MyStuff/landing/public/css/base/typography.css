@@ -1,0 +1,149 @@
+/**
+ * Typography System
+ * Defines consistent font usage across MyStuff
+ */
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Palanquin+Dark:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Font Families */
+    --font-body: 'Lexend Deca', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-title: 'Palanquin Dark', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Legacy Variables (for backward compatibility) */
+    --font-primary: var(--font-body);
+    --font-secondary: var(--font-title);
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Font Sizes */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    --font-size-5xl: 3rem;      /* 48px */
+
+    /* Line Heights */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+}
+
+/* Base Typography */
+body {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-top: 0;
+}
+
+h1 {
+    font-size: var(--font-size-5xl);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: var(--font-size-4xl);
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: var(--font-size-3xl);
+}
+
+h4 {
+    font-size: var(--font-size-2xl);
+}
+
+h5 {
+    font-size: var(--font-size-xl);
+}
+
+h6 {
+    font-size: var(--font-size-lg);
+}
+
+/* Paragraphs */
+p {
+    font-family: var(--font-body);
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-regular);
+}
+
+/* Links */
+a {
+    font-family: var(--font-body);
+    text-decoration: none;
+}
+
+/* Lists */
+ul, ol {
+    font-family: var(--font-body);
+    margin-bottom: 1rem;
+}
+
+/* Small Text */
+small {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+}
+
+/* Code */
+code, pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--font-size-sm);
+}
+
+/* Button Text */
+button, .button {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Form Elements */
+input, select, textarea {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+}
+
+/* Navigation */
+.nav-link {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Headers and Titles */
+.section-title,
+.hero-title,
+.footer-title {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Body Text */
+.body-text,
+.content-text,
+.description {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-regular);
+} 

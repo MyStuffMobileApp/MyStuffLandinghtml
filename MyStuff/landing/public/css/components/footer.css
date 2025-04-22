@@ -1,0 +1,155 @@
+/* Footer Component */
+footer {
+    background: var(--dark);
+    padding: 4rem 2rem;
+    color: var(--white);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-main {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-tagline {
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.trust-badges {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--yellow);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.badge img {
+    height: 32px;
+    width: auto;
+    filter: brightness(0) saturate(100%) invert(83%) sepia(24%) saturate(636%) hue-rotate(332deg) brightness(101%) contrast(101%);
+}
+
+.badge span {
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.legal-links,
+.contact-links,
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.legal-links a,
+.contact-links a,
+.contact-links address {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-style: normal;
+    font-size: 0.9rem;
+}
+
+.legal-links a:hover,
+.contact-links a:hover {
+    color: var(--yellow);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    color: var(--yellow);
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    footer {
+        padding: 3rem 1rem;
+    }
+
+    .badge {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .badge img {
+        height: 28px;
+        margin-bottom: 0.5rem;
+    }
+
+    .badge span {
+        font-size: 0.9rem;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .trust-badges {
+        justify-content: center;
+    }
+} 

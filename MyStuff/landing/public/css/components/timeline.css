@@ -1,0 +1,109 @@
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    font-family: var(--font-body);
+    text-align: center;
+}
+
+.timeline-title {
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-4xl);
+    background: linear-gradient(135deg, var(--accent), var(--yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px auto;
+    max-width: 900px;
+    gap: 100px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--secondary);
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.timeline-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.timeline-icon.wildfire {
+    background: var(--accent);
+}
+
+.timeline-icon.expansion {
+    background: var(--secondary);
+}
+
+.timeline-icon.global {
+    background: var(--primary);
+}
+
+.timeline-icon i {
+    font-size: 32px;
+    color: var(--white);
+}
+
+.timeline-year {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.timeline-text {
+    font-size: 1.25rem;
+    color: var(--dark);
+    max-width: 200px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+.timeline-subtitle {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-top: 60px;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+} 
